@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'stack'
+require 'item'
 
 RSpec.describe 'Stack' do
   let(:stack) { Stack.new }
@@ -11,13 +12,22 @@ RSpec.describe 'Stack' do
   end
 
   describe '#push' do
-    context 'new stack push nil' do
+    let(:item) { double("item") }
 
-      before do
-        stack.push(nil)
-      end
+    before do
+      stack.push(item)
+    end
+
+    context 'new stack push nil' do
+      let(:item) { nil }
       subject { stack.size }
-      it { expect(subject).to be 0 }
+      it { expect(subject).to eq 0 }
+    end
+
+    context 'new stack push item' do
+      let(:item) { Item.new }
+      subject { stack.size }
+      it { expect(subject).to eq 1 }
     end
   end
 

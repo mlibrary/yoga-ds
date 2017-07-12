@@ -1,6 +1,12 @@
 class Stack
-  def push(item)
+  @@stack
 
+  def initialize
+    @@stack = []
+  end
+
+  def push(item)
+    @@stack << item unless item.nil?
   end
 
   def pop
@@ -8,6 +14,6 @@ class Stack
   end
 
   def size
-    0
+    @@stack.size
   end
 end
