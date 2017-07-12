@@ -33,8 +33,30 @@ RSpec.describe 'Stack' do
 
   describe '#pop' do
     context 'new stack pop nil' do
-      subject { stack.pop }
-      it { expect(subject).to be nil }
+      it { expect(stack.pop).to be nil }
+      it { expect(stack.size).to be 0 }
+    end
+
+    context 'push pop' do
+      let(:item) { double("item") }
+
+      before do
+        stack.push(item)
+      end
+
+      context 'push nil pop nil' do
+        let(:item) { nil }
+        it { expect(stack.size).to eq 0 }
+        it { expect(stack.pop).to be nil }
+        it { expect(stack.size).to eq 0 }
+      end
+
+      context 'push item pop item' do
+        let(:item) { Item.new }
+        it { expect(stack.size).to eq 1 }
+        it { expect(stack.pop).to be nil }
+        it { expect(stack.size).to eq 0 }
+      end
     end
   end
 

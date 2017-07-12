@@ -10,7 +10,8 @@ class Stack
   end
 
   def pop
-
+    @@stack[@stack.size-1]
+    @@stack.size = size - 1
   end
 
   def size
